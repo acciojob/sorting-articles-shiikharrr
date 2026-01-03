@@ -15,9 +15,9 @@ const bands = [
 	'An Old Dog'
 ];
 
-const strip = s => s.replace(/^(a|am|the)\s+/i, '');
+const strip = s => s.replace(/^\s*(?:a|am|the)\s+/i, '');
 
 const sorted = bands.slice().sort((a, b) => 
-	strip(a).localeCompare(strip(b)));
+	strip(a).localeCompare(strip(b), undefined, { sensitivity: 'base' }));
 
-document.getElementById('band').innerHTML = sorted.map(t => `<li>${t}</li>`).join('');
+document.getElementById('band').innerHTML = sorted.map(x => `<li>${x}</li>`).join('');
